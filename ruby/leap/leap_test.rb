@@ -1,15 +1,6 @@
 require 'minitest/autorun'
 require_relative 'leap'
 
-class Date
-  def leap?
-    raise "Implement this yourself instead of using Ruby's implementation."
-  end
-
-  alias gregorian_leap? leap?
-  alias julian_leap? leap?
-end
-
 class YearTest < Minitest::Test
   def test_year_not_divisible_by_4_common_year
     refute Year.leap?(2015), "Expected 'false', 2015 is not a leap year."
