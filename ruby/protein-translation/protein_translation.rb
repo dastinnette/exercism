@@ -22,6 +22,7 @@ module Translation
 
   def self.of_rna(strand)
     codons = strand.scan(/\w{3}/)
+    
     stop_index = codons.index { |codon| STOP_CODONS.include?(codon) } 
 
     fail InvalidCodonError if stop_index.nil? && strand.length % 3 != 0
