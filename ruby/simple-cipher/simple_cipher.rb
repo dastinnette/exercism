@@ -1,7 +1,29 @@
-=begin
-Write your code for the 'Simple Cipher' exercise in this file. Make the tests in
-`simple_cipher_test.rb` pass.
+class Cipher
+  ALPHABET = [*'a'..'z']
 
-To get started with TDD, see the `README.md` file in your
-`ruby/simple-cipher` directory.
-=end
+  attr_reader :key
+
+  def initialize(key = nil)
+    @key = key || 100.times.map { ALPHABET.sample }.join
+    fail ArgumentError, 'invalid chars in key' unless valid?(@key)
+  end
+
+  def encode(text)
+    a = 'a'.ord
+    text.chars.zip(@key.chars).map do |char, key|
+      ALPHABET[(char.ord - a + key.ord - a) % ALPHABET.length]
+    end.join
+  end
+
+  def decode(code)
+    code.chars.zip(@key.chars).map do |char, key|
+      ALPHABET[char.ord - key.ord]
+    end.join
+  end
+
+private
+
+  def valid?(key)
+    !key.empty? && key !~ /[^a-z]/
+  end
+end
