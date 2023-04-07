@@ -5,6 +5,7 @@ class Cipher
 
   def initialize(key = nil)
     @key = key || 100.times.map { ALPHABET.sample }.join
+    
     fail ArgumentError, 'invalid chars in key' unless valid?(@key)
   end
 
