@@ -1,7 +1,6 @@
 class CollatzConjecture
   def self.steps(num) 
     raise ArgumentError if num < 1
-    
     collatz_steps = 0 
 
     until num == 1
