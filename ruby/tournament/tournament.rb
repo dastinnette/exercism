@@ -1,5 +1,4 @@
 class Tournament
-
     def self.tally(input)
       self.new.tally(input)
     end
