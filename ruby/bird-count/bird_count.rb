@@ -3,8 +3,8 @@ class BirdCount
     [0, 2, 5, 3, 7, 8, 4]
   end
 
-  def initialize(bird_count)
-    @birds = bird_count 
+  def initialize(birds)
+    @birds = birds  
   end
 
   def yesterday
