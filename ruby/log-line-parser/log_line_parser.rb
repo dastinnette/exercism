@@ -1,6 +1,6 @@
 class LogLineParser
-  def initialize(line)
-    @line = line
+  def initialize(lines)
+    @line = lines
   end
 
   def message
