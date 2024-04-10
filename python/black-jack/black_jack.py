@@ -16,12 +16,9 @@ def value_of_card(card):
     3.  '2' - '10' = numerical value.
     """
 
-    if card == 'J' or card == 'Q' or card == 'K':
-        return 10
-    elif card == 'A':
-        return 1
-    else:
-        return int(card)
+    if (card in 'JQK'): return 10
+    if (card == 'A'): return 1
+    return int(card)
 
 
 def higher_card(card_one, card_two):
@@ -35,15 +32,9 @@ def higher_card(card_one, card_two):
     3.  '2' - '10' = numerical value.
     """
 
-    first_value = value_of_card(card_one)
-    second_value = value_of_card(card_two)
-
-    if first_value > second_value:
-        return card_one
-    elif second_value > first_value:
-        return card_two
-    else:
-        return card_one, card_two
+    if (value_of_card(card_one) > value_of_card(card_two)): return card_one
+    if (value_of_card(card_one) < value_of_card(card_two)): return card_two
+    return (card_one, card_two)
 
 
 def value_of_ace(card_one, card_two):
@@ -57,15 +48,8 @@ def value_of_ace(card_one, card_two):
     3.  '2' - '10' = numerical value.
     """
 
-    first_value = value_of_card(card_one)
-    second_value = value_of_card(card_two)
-
-    if first_value + second_value > 10:
-        return 1
-    elif card_one is 'A' or card_two is 'A':
-        return 1
-    else:
-        return 11
+    if (card_one == 'A' or card_two == 'A'): return 1
+    return 11 if (value_of_card(card_one) + value_of_card(card_two) <= 10) else 1
 
 def is_blackjack(card_one, card_two):
     """Determine if the hand is a 'natural' or 'blackjack'.
@@ -78,13 +62,7 @@ def is_blackjack(card_one, card_two):
     3.  '2' - '10' = numerical value.
     """
 
-    first_value = value_of_card(card_one)
-    second_value = value_of_card(card_two)
-
-    if (first_value == 10 or second_value == 10) and (card_one == 'A' or card_two == 'A'):
-        return True
-    else:
-        return False
+    return (card_one == 'A' and value_of_card(card_two) == 10) or (card_two == 'A' and value_of_card(card_one) == 10)
 
 def can_split_pairs(card_one, card_two):
     """Determine if a player can split their hand into two hands.
@@ -93,13 +71,7 @@ def can_split_pairs(card_one, card_two):
     :return: bool - can the hand be split into two pairs? (i.e. cards are of the same value).
     """
 
-    first_value = value_of_card(card_one)
-    second_value = value_of_card(card_two)
-
-    if first_value == second_value:
-        return True
-    else:
-        return False
+    return value_of_card(card_one) == value_of_card(card_two)
 
 def can_double_down(card_one, card_two):
     """Determine if a blackjack player can place a double down bet.
@@ -108,9 +80,4 @@ def can_double_down(card_one, card_two):
     :return: bool - can the hand can be doubled down? (i.e. totals 9, 10 or 11 points).
     """
 
-    value_total = value_of_card(card_one) + value_of_card(card_two)
-
-    if value_total == 9 or value_total == 10 or value_total == 11:
-        return True
-    else:
-        return False
+    return 9 <= (value_of_card(card_one) + value_of_card(card_two)) <= 11
