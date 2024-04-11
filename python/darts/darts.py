@@ -1,12 +1,13 @@
-def score(x, y):
-    x = abs(x)
-    y = abs(y)
+import math
 
-    if x**2 + y**2 <= 1:
+def score(x, y):
+    distance = math.sqrt(x**2+y**2)
+
+    if distance <= 1:
         return 10
-    elif x**2 + y**2 <= 25:
+    elif distance <= 5:
         return 5
-    elif x**2 + y**2 <= 100:
+    elif distance <= 10:
         return 1
     else:
         return 0
