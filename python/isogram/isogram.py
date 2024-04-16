@@ -1,10 +1,8 @@
-import re
-
-def is_isogram(sentence):
-    uniform_sentence = re.sub("[^A-Za-z]","",sentence).lower()
+def is_isogram(word):
+    clean_word = [i for i in word.lower() if i.isalpha()]
     
-    for char in uniform_sentence:
-        if uniform_sentence.count(char) > 1:
+    for char in clean_word:
+        if clean_word.count(char) > 1:
             return False
 
     return True
