@@ -10,5 +10,3 @@ def translate_word(word):
 
 def translate(sentence):
     return ' '.join([translate_word(word) for word in sentence.split()])
-    
-    return " ".join(translated_words)
